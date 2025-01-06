@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
     {
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
-        if(_spawnManager == null){
+        if (_spawnManager == null)
+        {
             Debug.LogError("The spawn manager is null");
         }
     }
@@ -62,18 +63,20 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(11, transform.position.y, 0);
         }
-    } 
+    }
 
     void FireLaser()
     {
-            _canFire = Time.time + _fireRate;
-            Vector3 position = transform.position + new Vector3(0, 0.8f, 0);
-            Instantiate(_laserPrefab, position, Quaternion.identity);
+        _canFire = Time.time + _fireRate;
+        Vector3 position = transform.position + new Vector3(0, 1.05f, 0);
+        Instantiate(_laserPrefab, position, Quaternion.identity);
     }
 
-    public void Damage(){
+    public void Damage()
+    {
         _lives--;
-        if(_lives < 1){
+        if (_lives < 1)
+        {
             _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
         }

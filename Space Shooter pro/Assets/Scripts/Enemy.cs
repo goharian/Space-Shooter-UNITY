@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     {
         // move down at 4 meters pre sec
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-        
+
 
         //if bottom of screen
         if (transform.position.y < -5.5f)
@@ -29,17 +29,21 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other){
-        if(other.gameObject.CompareTag("Player")){
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
             Player player = other.transform.GetComponent<Player>();
-            if(player != null){
+            if (player != null)
+            {
                 player.Damage();
             }
 
             Destroy(this.gameObject);
         }
 
-        if(other.gameObject.CompareTag("Laser")){
+        if (other.gameObject.CompareTag("Laser"))
+        {
             Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
